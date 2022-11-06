@@ -50,26 +50,24 @@ $headcolor="#183040";
     
     </section>
     <section class="mainContent">
-   
+
+      <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+       User Name: <input type="text" name='username' placeholder="name">
+       <input type="submit" value="submit">
+
+      </form>
 
     <?php
-
-   $x=100;
-
-  function operation(){
-    global $x;
-    $a=10;
-    echo $a;
-    echo '<br>';
-    echo $x;
-  }
-  operation();
-
-
-
-
-
-
+     if($_SERVER['REQUEST_METHOD']=="POST"){
+      $name=$_POST['username'];
+      if(empty($name)){
+        echo  "<span style='color:red'> 'Plz Enter your User name!' </span>" ;
+      }
+      else{
+        echo "<span style='color:green'>$name</span>";
+      }
+     }
+ 
     
     ?>
 
