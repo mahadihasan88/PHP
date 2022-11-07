@@ -50,23 +50,64 @@ $headcolor="#183040";
     
     </section>
     <section class="mainContent">
+<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" name="username" required="1"></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><input type="email" name="email"></td>
+        </tr>
+        <tr>
+          <td>Website:</td>
+          <td><input type="website" name="website"></td>
+        </tr>
+        <tr>
+          <td>Gender:</td>
+          <td>
+            <input type="radio" name="gender" value="male">Male
+            <input type="radio" name="gender" value="female">Female
+        </td>
+        </tr>
+        <tr>
+          <td>Comment:</td>
+          <td><textarea name="comment" rows="5" cols="30"></textarea></td>
+        </tr>
+        <tr>
+          
+          <td><input type="submit" name="submit" value="submit"></td>
+        </tr>
+      </table>
+    </form>
 
-      <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-       User Name: <input type="text" name='username' placeholder="name">
-       <input type="submit" value="submit">
-
-      </form>
-          <a href="text.php?data=Bangledesh&msg=government">sent data</a>
     <?php
+
+
      if($_SERVER['REQUEST_METHOD']=="POST"){
-      $name=$_POST['username'];
-      if(empty($name)){
-        echo  "<span style='color:red'> 'Plz Enter your User name!' </span>" ;
-      }
-      else{
-        echo "<span style='color:green'>$name</span>";
-      }
+      $name=validate($_POST['username']);
+      $email=validate($_POST['email']);
+      $website=validate($_POST['website']);
+      $gender=validate($_POST['gender']);
+      $comment=validate($_POST['comment']);
+
+     
+      echo "$name <br>";
+      echo "$email <br>";
+      echo "$website <br>";
+      echo "$gender <br>";
+      echo "$comment <br>";
+  
      }
+     function validate($data){
+       
+      $data = trim($data);
+      $data = stripslashes($data);
+      $data = htmlspecialchars($data);
+      return $data;
+    
+    }
  
     
     ?>
