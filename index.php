@@ -56,7 +56,7 @@ $headcolor="#183040";
        <input type="submit" value="submit">
 
       </form>
-
+          <a href="text.php?data=Bangledesh&msg=government">sent data</a>
     <?php
      if($_SERVER['REQUEST_METHOD']=="POST"){
       $name=$_POST['username'];
